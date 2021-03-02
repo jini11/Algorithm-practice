@@ -27,13 +27,14 @@ public class n15650 {
         for(int i=0;i<n;i++){
             if(key[i])
                 continue;
-            else{
+            
+            if(count==0||result[count-1]<i+1){
                 key[i]=true;
                 result[count]=i+1;
                 dfs(n,m,count+1);
                 key[i]=false;
             }
-            
+        
         }
         
     }
