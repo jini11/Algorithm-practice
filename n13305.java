@@ -16,21 +16,40 @@ public class n13305 {
         int[] liter=new int[N];
         int[] km=new int[N-1];
 
+        
         for(int i=0;i<liter.length;i++)
             liter[i]=Integer.parseInt(l[i]);
 
         for(int i=0;i<km.length;i++)
             km[i]=Integer.parseInt(k[i]);
 
-        for(int i=0;i<liter.length-2;i++){
+        result=liter[0]*km[0];
+        
+       /* for(int i=0;i<N-2;i++){
             if(liter[i]<liter[i+1]){
-                result+=(liter[i]*(km[i]+km[i+1]));
-                km[i+1]=0;
+                result+=(liter[i]*km[i+1]);
+                
             }
             else{
-                result+=(liter[i]*km[i]);
+                result+=(liter[i+1]*km[i+1]);
             }
         }
+        */
+        int nowCity = 0;
+		int nextCity = nowCity + 1;
+		
+		
+		while(nextCity < N- 1) {
+			if(liter[nowCity] < liter[nextCity]) {
+				result += liter[nowCity] * km[nextCity];
+			}
+			else {
+				result += liter[nextCity] * km[nextCity];
+				nowCity = nextCity;
+			}
+			
+			nextCity++;
+		}
         System.out.println(result);
     }
 }
