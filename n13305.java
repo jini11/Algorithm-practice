@@ -3,7 +3,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class n13305 {
-    public static int result=0;
+    public static long result=0;
     public static void main(String[] args) throws Exception{
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         
@@ -13,8 +13,8 @@ public class n13305 {
         String[] l=br.readLine().split(" ");
         
 
-        int[] liter=new int[N];
-        int[] km=new int[N-1];
+        long[] liter=new long[N];
+        long[] km=new long[N-1];
 
         
         for(int i=0;i<liter.length;i++)
@@ -25,16 +25,26 @@ public class n13305 {
 
         result=liter[0]*km[0];
         
-       /* for(int i=0;i<N-2;i++){
+       
+/*        for(int i=0;i<N-2;i++){
             if(liter[i]<liter[i+1]){
                 result+=(liter[i]*km[i+1]);
-                
             }
             else{
                 result+=(liter[i+1]*km[i+1]);
             }
         }
-        */
+  */
+        /*for (int i = 1; i < liter.length - 1; i++) {
+            if (liter[i] < liter[i + 1]) {
+                result += (liter[i] * (km[i] + km[i + 1]));
+                km[i + 1] = 0;
+            } else {
+                result += (liter[i] * km[i]);
+            }
+        }
+        */      
+        
         int nowCity = 0;
 		int nextCity = nowCity + 1;
 		
@@ -50,6 +60,7 @@ public class n13305 {
 			
 			nextCity++;
 		}
+        
         System.out.println(result);
     }
 }
