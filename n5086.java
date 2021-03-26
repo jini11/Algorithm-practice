@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class n5086 {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args)  {
         Scanner sc=new Scanner(System.in);
         
         int a=1;
