@@ -16,7 +16,7 @@ public class n9375 {
             }
             for(int j=0;j<n;j++){
                 for(int k=j+1;k<n;k++){
-                    if(!closet[j][1].equals(closet[k][1])){
+                    if(!closet[j][1].equals(closet[k][1])){ 
                         count++;
                     }
                 }
