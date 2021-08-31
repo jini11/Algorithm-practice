@@ -15,9 +15,9 @@ public class n1932 {
             }
         }
 
-        System.out.println(triangle(0,0));
+        //System.out.println(triangle(0,0));
     }
-    public static int triangle(int n,int m){
+    //public static int triangle(int n,int m){
         
-    }
+    //}
 }

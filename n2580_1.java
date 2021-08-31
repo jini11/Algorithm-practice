@@ -44,5 +44,6 @@ public class n2580_1 {
             check_row[arr[x][i]]=true;
             check_col[arr[i][y]]=true;
         }
+        return false;
     }
 }
