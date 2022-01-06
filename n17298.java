@@ -1,41 +1,65 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.*;
+import java.util.stream.Stream;
+
 
 public class n17298 {
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int num = Integer.parseInt(br.readLine());
 
-        Stack<Integer> stack = new Stack<>();
+        Stack<Integer> answer = new Stack<>();
+        Stack<Integer> assistant = new Stack<>();
 
-        int num = sc.nextInt();
+        String str = br.readLine();
+        int[] arr = Stream.of(str.split(" ")).mapToInt(Integer::parseInt).toArray();
 
+        answer.push(-1);
+        assistant.push(arr[arr.length-1]);
 
-        int[] arr = new int[num];
-
-        for(int i=0;i<num;i++)
-            arr[i]=sc.nextInt();
-
-        stack.push(-1);
-      
-        int check = arr[num-1];
-        for(int i=num-2;i>=0;i--){
-            if(arr[i]<arr[i+1])
-            if(arr[i]<check)
-                stack.push(check);
-            else {
-                check = arr[i];
-                stack.push(-1);
-            }
-        }
         
+        // int k=arr.length-2;
+        // while(true){
+        //     if(arr[k]>assistant.peek()){
+        //         assistant.pop();
+        //     }
+        //     if(assistant.empty()){
+        //         assistant.push(arr[k]);
+        //         answer.push(-1);
+        //         k--;
+        //     }
+        //     if(arr[k]<assistant.peek()){
+        //         answer.push(assistant.peek());
+        //         assistant.push(arr[k]);
+        //         k--;
+        //     }
+        //     if(k==-1)
+        //         break;
+        // }
+
+        for(int i=arr.length-2;i>=0;i--){
+            while(!assistant.isEmpty() && assistant.peek()<=arr[i]){
+                assistant.pop();
+            }
+            if(assistant.isEmpty()){
+                answer.push(-1);
+                assistant.push(arr[i]);
+            } else {
+                answer.push(assistant.peek());
+                assistant.push(arr[i]);
+            }
+            assistant.push(arr[i]);
+        }
         for(int i=0;i<num;i++)
-            System.out.print(stack.pop()+" ");
-
-    }
-
-    
+            bw.write(answer.pop()+" ");
+  
+        bw.flush();
+        bw.close();
+            
+    } 
 }
-// 4 1 5 7
-// 5 5 7 -1
-
-// 4 1 3 5 7
-// 5 5 5 7 -1
