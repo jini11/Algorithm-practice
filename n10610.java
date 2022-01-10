@@ -6,26 +6,23 @@ public class n10610 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        long result = 0;
-        String n = br.readLine();
-        String[] arr = n.split("");
-
-        int[] num = Arrays.stream(arr).mapToInt(Integer::parseInt).toArray();
-
-        Arrays.sort(num);
-
+        String str = br.readLine();
         int sum = 0;
-        for(int i=0;i<num.length;i++) {
-            sum += num[i];
-            long temp = (long) (num[i] * Math.pow(10, i));
-            result += temp;
-        }
+        String result = "";
+        String[] arr = str.split("");
+        Arrays.sort(arr);
 
-        if(sum%3==0&&n.contains("0"))
-            bw.write(result+"\n");
-        else
-            bw.write("-1\n");
+        for(int i=arr.length-1;i>=0;i--) {
+            int num = Integer.parseInt(arr[i]);
+            sum += num;
+            result += arr[i];
+        }
         
+        if(!str.contains("0") || sum % 3 != 0) 
+            bw.write("-1\n");
+        else
+            bw.write(result+"\n");
+
         br.close();
         bw.flush();
         bw.close();
