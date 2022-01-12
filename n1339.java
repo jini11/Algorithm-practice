@@ -1,7 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class n1339 {
     public static void main(String []args) throws IOException {
@@ -33,20 +31,26 @@ public class n1339 {
                 list.add(str[j].split("")[i]); 
             }
         }  
-
-        list.remove(" ");
         
-        int[] num = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+        list.remove(" ");
+        Set<String> set = new HashSet<>(list);
+        List<String> nlist = new ArrayList<>(set);
+        for(int i=0;i<nlist.size();i++)
+            System.out.println(nlist.get(i));
+        int[] num = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
 
         for(int i=0;i<n;i++) {
             String temp = "";
-            for(int j=0;j<list.size();j++) {
-                if(str[i].contains(list.get(j))) {
+            for(int j=0;j<nlist.size();j++) {
+                if(str[i].contains(nlist.get(j))) {
                    // str[i] = str[i].replace(list.get(j), Integer.toString(num[j]));
-                    temp += Integer.toString(num[j]);
+                   str[i] = str[i].replaceAll(nlist.get(j),Integer.toString(num[j]));
+                  // temp += Integer.toString(num[j]);
+                 // temp += str[i];
+                 System.out.println(str[i]);
                 }
             }
-            result += Integer.parseInt(temp);
+            result += Integer.parseInt(str[i]);
         }
 
         System.out.println(result);
