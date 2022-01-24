@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class n1343 {
     public static void main(String []args) throws IOException {
@@ -8,6 +6,12 @@ public class n1343 {
 
         String str = br.readLine();
 
-        
+        str = str.replaceAll("XXXX","AAAA");
+        str = str.replaceAll("XX", "BB");
+
+        if(str.contains("X"))
+            System.out.println(-1);
+        else
+            System.out.println(str);
     }
 }
