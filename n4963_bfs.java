@@ -42,7 +42,22 @@ public class n4963_bfs {
 
     public static void bfs(int x, int y) {
         Queue<int[]> queue = new LinkedList<>();
+        visited[x][y] = true;
+        queue.add(new int[] {x, y});
 
+        while(!queue.isEmpty()) {
+            int[] point = queue.poll();
+            for(int i=0;i<8;i++) {
+                int nx = point[0] + dx[i];
+                int ny = point[1] + dy[i];
+                if(nx>=0 && ny>0 && nx<=h && ny<=w) {
+                    if(arr[nx][ny]==1 && visited[nx][ny]==false) {
+                        visited[nx][ny] = true;
+                        queue.add(new int[] {nx, ny});
+                    }
+                }
+            }
+        }
         
     }
 }
