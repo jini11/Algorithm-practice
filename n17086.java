@@ -11,7 +11,7 @@ public class n17086 {
     static int[] dx = {1, -1, 0, 0, 1, 1, -1, -1};
     static int[] dy = {0, 0, 1, -1, 1, -1, 1, -1};
     static Queue<int[]> queue;
-    public static void main(String []args) throws IOException {
+    public static void main(String []args) throws IOException { 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String input = br.readLine();
         n = Integer.parseInt(input.split(" ")[0]);
