@@ -40,11 +40,11 @@ public class n16173 {
             }
             int nx = r + arr[r][c];
             int ny = c + arr[r][c];
-            if(!visited[nx][c] && nx<n) { 
+            if(nx<n && !visited[nx][c]) { 
                 queue.add(new int[] {r+arr[r][c], c});
                 visited[nx][c] = true;
             }
-            if(!visited[r][ny] && ny<n) { 
+            if(ny<n && !visited[r][ny]) { 
                 queue.add(new int[] {r, c + arr[r][c]});
                 visited[r][ny] = true;
             }
