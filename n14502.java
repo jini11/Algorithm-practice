@@ -38,9 +38,9 @@ public class n14502 {
         for(int i=0;i<n;i++) {
             for(int j=0;j<m;j++) {
                 if(copy[i][j] == 0) {
-                    arr[i][j] = 1;
+                    copy[i][j] = 1;
                     dfs(num+1);
-                    arr[i][j] = 0;
+                    copy[i][j] = 0;
                 }
             }
         }
@@ -52,7 +52,7 @@ public class n14502 {
 
         for(int i=0;i<n;i++) {
             for(int j=0;j<m;j++) {
-                copy_arr[i][j] = arr[i][j];
+                copy_arr[i][j] = copy[i][j];
                 if(copy_arr[i][j] == 2) {
                     copy_arr[i][j] = 2;
                     queue.add(new int[] {i, j});
@@ -70,8 +70,8 @@ public class n14502 {
                     queue.add(new int[] {nx, ny});
                 }
             }
-            area(copy_arr);
         }
+        area(copy_arr);
     }
     public static void area(int[][] map) {
         int count = 0;
