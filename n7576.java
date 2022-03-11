@@ -4,51 +4,49 @@ import java.util.Scanner;
 
 public class n7576 {
     static int[][] arr;
-    static boolean[][] visited;
     static int m, n, count, result;
     static int[] dx = {1, -1, 0, 0};
     static int[] dy = {0, 0, 1, -1};
+    static Queue<int[]> queue;
     public static void main(String []args) {
         Scanner sc = new Scanner(System.in);
         m = sc.nextInt();
         n = sc.nextInt();
-
-        arr = new int[m][n];
-        visited = new boolean[m][n];
+        arr = new int[n][m];
         count = 0;
+        result = 0;
+        queue = new LinkedList<>();
 
-        for(int i=0;i<m;i++) 
-            for(int j=0;j<n;j++) 
+        for(int i=0;i<n;i++) {
+            for(int j=0;j<m;j++) {
                 arr[i][j] = sc.nextInt();
-        
-        for(int i=0;i<m;i++) {
-            for(int j=0;j<n;j++) {
-                if(arr[i][j]==1 && visited[i][j]==false) {
-                    bfs(i, j);
-                    count++;
+                if(arr[i][j] == 1) {
+                    queue.add(new int[] {i, j});
                 }
             }
         }
-        System.out.println("count: "+count);
-        System.out.println("result: "+result);
+        bfs();
+        for(int i=0;i<n;i++) {
+            for(int j=0;j<m;j++) {
+                if(arr[i][j] == 0) {
+                    System.out.println(-1);
+                    return;
+                }
+                result = Math.max(result, arr[i][j]);
+            }
+        }
+        System.out.println(result-1);
     }
-    
-    public static void bfs(int x, int y) {
-        Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[] {x, y});
-        visited[x][y] = true;
-
+    public static void bfs() {
         while(!queue.isEmpty()) {
             int[] point = queue.poll();
             for(int i=0;i<4;i++) {
                 int nx = point[0] + dx[i];
                 int ny = point[1] + dy[i];
-                if(nx>-1 && ny>-1 && nx<m && ny<n) {
-                    if(arr[nx][ny]==0 && visited[nx][ny]==false) {
-                        visited[nx][ny] = true;
-                        arr[nx][ny] = 1;
-                        queue.add(new int[] {nx, ny});
-                    }
+                if(nx<0 || ny<0 || nx>=n || ny>=m) continue;
+                if(arr[nx][ny] == 0) {
+                    queue.add(new int[] {nx, ny});
+                    arr[nx][ny] = arr[point[0]][point[1]] + 1;
                 }
             }
         }
