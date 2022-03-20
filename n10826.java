@@ -7,7 +7,7 @@ public class n10826 {
     public static void main(String []args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        BigInteger[] arr = new BigInteger[n+1];
+        BigInteger[] arr = new BigInteger[n+2];
         arr[0] = BigInteger.ZERO;
         arr[1] = BigInteger.ONE;
         for(int i=2;i<=n;i++)
