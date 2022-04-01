@@ -1,33 +1,26 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-public class n14501 {
-    static int n, money, count, final_money;
-    static int[][] table;
-    public static void main(String []args) {
-        Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
-        table = new int[n][2];
+public class n14501 { // DP
+    public static void main(String []args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        int[] t = new int[n];
+        int[] p = new int[n];
+        int[] arr = new int[n+1];
         for(int i=0;i<n;i++) {
-            table[i][0] = sc.nextInt();
-            table[i][1] = sc.nextInt();
+            String input = br.readLine();
+            t[i] = Integer.parseInt(input.split(" ")[0]);
+            p[i] = Integer.parseInt(input.split(" ")[1]);
         }
-        int max = 0;
         for(int i=0;i<n;i++) {
-            count = 0;
-            money = 0;
-            get_cost(i);
-            if(count>=max) {
-                max = count;
-                final_money = money;
+            if(i + t[i] <= n) {
+                arr[i+t[i]] = Math.max(arr[i+t[i]], arr[i] + p[i]);
             }
+            arr[i+1] = Math.max(arr[i+1], arr[i]);
         }
-        System.out.println(final_money);
+        System.out.println(arr[n]);
     }
-    public static void get_cost(int day) {
-        if(day>=n) return;
-        money += table[day][1];
-        //System.out.println(money);
-        get_cost(day+table[day][0]);
-        count++;
-    }
+    
 }
