@@ -11,18 +11,18 @@ public class n2164 {
         Queue<Integer> queue = new LinkedList<>();
         int result = 0;
         boolean key = true;
-        for(int i=2;i<=n;i++)
+        for(int i=1;i<=n;i++)
             queue.add(i);
         
         while(!queue.isEmpty()) {
-            if(key) {
+            if(!key) {
                 int top = queue.poll();
                 queue.add(top);
-                key = false;
-            } 
-            if(!key) {
-                result = queue.poll();
                 key = true;
+            } 
+            if(key) {
+                result = queue.poll();
+                key = false;
             }
         }
         System.out.println(result);
