@@ -8,6 +8,7 @@ public class n10816 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
+        StringBuilder sb = new StringBuilder();
         int n = Integer.parseInt(br.readLine());
         st = new StringTokenizer(br.readLine());
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -20,8 +21,9 @@ public class n10816 {
         st = new StringTokenizer(br.readLine());
         for(int i=0;i<m;i++) {
             int num = Integer.parseInt(st.nextToken());
-            if(map.get(num) == null) System.out.print("0 ");
-            else System.out.print(map.get(num)+" ");
+            if(map.get(num) == null) sb.append("0 ");
+            else sb.append(map.get(num)).append(" ");
         }
+        System.out.println(sb);
     }
 }
