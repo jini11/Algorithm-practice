@@ -23,5 +23,6 @@ public class n1002 {
             else 
                 System.out.println(2);
         }
+        sc.close();
     }
 }

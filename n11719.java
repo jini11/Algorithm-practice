@@ -8,7 +8,7 @@ public class n11719 {
 		String a = "";
 		while((a=br.readLine()) != null)
 		{
-			System.out.println(a);
+			System.out.println(a); 
 		}
 	}
 } 

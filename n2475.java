@@ -1,3 +1,6 @@
+import java.io.IOException;
+import java.util.Scanner;
+
 public class n2475 {
     public static void main(String[] args) throws IOException { 
         Scanner scanner = new Scanner(System.in); 
@@ -8,5 +11,6 @@ public class n2475 {
         } 
         int result = sum % 10; 
         System.out.println(result); 
+        scanner.close();
     }
 }
