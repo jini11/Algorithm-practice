@@ -34,7 +34,7 @@ public class n2606_bfs {
         count++;
 
         while(!queue.isEmpty()) {
-            int temp = queue.poll();
+            int temp = queue.poll(); 
             for(int i=1;i<arr.length;i++) {
                 if(arr[temp][i] == 1 && visited[i] == false) {
                     queue.add(i);
