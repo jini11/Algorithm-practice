@@ -19,7 +19,7 @@ public class n1026 {
         }
 
         Arrays.sort(a);
-        Arrays.sort(b, Collections.reverseOrder());
+        //Arrays.sort(b, Collections.reverseOrder());
 
         int result = 0;
         for(int i=0;i<n;i++) {
