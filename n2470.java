@@ -13,7 +13,7 @@ public class n2470 {
         for(int i=0;i<n;i++)
             arr[i] = Integer.parseInt(st.nextToken());
             
-        Arrays.sort(arr); // -99 -2 -1 4 98
+        Arrays.sort(arr);
 
         int left = 0;
         int right = n-1;
