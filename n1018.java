@@ -1,68 +1,45 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class n1018 {
-    static char[][] arr;
-    static char[][] black={{'B','W','B','W','B','W','B','W'},
-                            {'W','B','W','B','W','B','W','B'},
-                            {'B','W','B','W','B','W','B','W'},
-                            {'W','B','W','B','W','B','W','B'},
-                            {'B','W','B','W','B','W','B','W'},
-                            {'W','B','W','B','W','B','W','B'},
-                            {'B','W','B','W','B','W','B','W'},
-                            {'W','B','W','B','W','B','W','B'},
-                            };
-    static char[][] white={{'W','B','W','B','W','B','W','B'},
-                            {'B','W','B','W','B','W','B','W'},
-                            {'W','B','W','B','W','B','W','B'},
-                            {'B','W','B','W','B','W','B','W'},
-                            {'W','B','W','B','W','B','W','B'},
-                            {'B','W','B','W','B','W','B','W'},
-                            {'W','B','W','B','W','B','W','B'},
-                            {'B','W','B','W','B','W','B','W'}
-                        };
-
-    public static void main(String[] args){
-        Scanner sc=new Scanner(System.in);
-        
-        int n=sc.nextInt();
-        int m=sc.nextInt();
-
-        arr=new char[n][m];
-        for(int i=0;i<n;i++){
-            String str=sc.next();
-            for(int j=0;j<m;j++){
-                arr[i][j]=str.charAt(j);
-               
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        boolean[][] arr = new boolean[n][m];
+                
+        for(int i=0;i<n;i++) {
+            String input = br.readLine();
+            for(int j=0;j<m;j++) {
+                char c = input.charAt(j);
+                if(c == 'W') arr[i][j] = false; // 'W'
+                else arr[i][j] = true; // 'B'
             }
         }
-        int min=64;
-        
-        for(int i=0;i<n-7;i++){
-            for(int j=0;j<m-7;j++){
-                int count=chess(i,j);
-                if(min>count)
-                    min=count;
+
+        int answer = Integer.MAX_VALUE;
+        for(int i=0;i<n-7;i++) {
+            for(int j=0;j<m-7;j++) {
+                int tmp = check(arr, i, j);
+                answer = Math.min(tmp, answer);
             }
         }
-        System.out.println(min);
-        
+        System.out.println(answer);
     }
-
-    public static int chess(int row,int col){
-        int count=0;
-        for(int i=row;i<row+8;i++){
-            for(int j=col;j<col+8;j++){
-                if(arr[row][col]=='W'){
-                  if(arr[i][j]!=white[i-row][j-col])
-                      count++;
-                }
-                else{
-                    if(arr[i][j]!=black[i-row][j-col])
-                        count++;
-                }
+    public static int check(boolean[][] arr, int x, int y) {
+        int cntWhite = 0;
+        boolean chk = false;
+        for(int i=x;i<x+8;i++) {
+            for(int j=y;j<y+8;j++) {
+                if(chk != arr[i][j]) 
+                    cntWhite++;    
+                chk = !chk;
             }
-            
+            chk = !chk;
         }
-        return count;
+        return Math.min(cntWhite, 64-cntWhite);
     }
 }
