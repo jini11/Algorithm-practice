@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class n9375 {
@@ -7,21 +8,19 @@ public class n9375 {
         int T=sc.nextInt();
         for(int i=0;i<T;i++){
             int n=sc.nextInt();
-            String[][] closet=new String[n][2];
-            int count=0;
+            HashMap<String, Integer> closet = new HashMap<>();
+            int count=1;
 
             for(int j=0;j<n;j++){
-                closet[j][0]=sc.next();
-                closet[j][1]=sc.next();
+                String name = sc.next();
+                String type = sc.next();
+                closet.put(type, closet.getOrDefault(type, 0) + 1);
             }
-            for(int j=0;j<n;j++){
-                for(int k=j+1;k<n;k++){
-                    if(!closet[j][1].equals(closet[k][1])){ 
-                        count++;
-                    }
-                }
+            
+            for(int value : closet.values()) {
+                count *= (value + 1);
             }
-            System.out.println(n+count);
+            System.out.println(count-1);
         }
     }
 }
