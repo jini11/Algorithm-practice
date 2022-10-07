@@ -20,16 +20,18 @@ public class n2003 {
         long sum = 0L;
         
         while(true) {
-            if(sum >=  M) {
+            if (sum >=  M) {
                 sum -= arr[left++];
             } 
-            if(right >= N)
+            else if (right >= N) {
                 break;
-            if(sum < M) {
+            }
+            else if (sum < M) {
                 sum += arr[right++];
             }
-            if(sum == M)
+            if(sum == M) {
                 cnt++;
+            }
         }
 
         System.out.println(cnt);
